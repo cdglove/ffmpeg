@@ -226,6 +226,7 @@ External library support:
   --enable-libcaca         enable textual display using libcaca [no]
   --enable-libcelt         enable CELT decoding via libcelt [no]
   --enable-libcdio         enable audio CD grabbing with libcdio [no]
+  --enable-libcgvc         enable cgvc en/decoding using libcgvc [no]
   --enable-libcodec2       enable codec2 en/decoding using libcodec2 [no]
   --enable-libdav1d        enable AV1 decoding via libdav1d [no]
   --enable-libdavs2        enable AVS2 decoding via libdavs2 [no]
@@ -1761,6 +1762,7 @@ EXTERNAL_LIBRARY_LIST="
     libbs2b
     libcaca
     libcelt
+    libcgvc
     libcodec2
     libdav1d
     libdc1394
@@ -3175,6 +3177,8 @@ libaom_av1_encoder_deps="libaom"
 libaom_av1_encoder_select="extract_extradata_bsf"
 libaribb24_decoder_deps="libaribb24"
 libcelt_decoder_deps="libcelt"
+libcgvc_decoder_deps="libcgvc"
+libcgvc_encoder_deps="libcgvc"
 libcodec2_decoder_deps="libcodec2"
 libcodec2_encoder_deps="libcodec2"
 libdav1d_decoder_deps="libdav1d"
@@ -6234,6 +6238,7 @@ enabled libcelt           && require libcelt celt/celt.h celt_decode -lcelt0 &&
                              { check_lib libcelt celt/celt.h celt_decoder_create_custom -lcelt0 ||
                                die "ERROR: libcelt must be installed and version must be >= 0.11.0."; }
 enabled libcaca           && require_pkg_config libcaca caca caca.h caca_create_canvas
+enabled libcgvc           && require libcgvc cgvc/cgvc.h cgvc_encoder_create -lcgvc -lstdc++
 enabled libcodec2         && require libcodec2 codec2/codec2.h codec2_create -lcodec2
 enabled libdav1d          && require_pkg_config libdav1d "dav1d >= 0.4.0" "dav1d/dav1d.h" dav1d_version
 enabled libdavs2          && require_pkg_config libdavs2 "davs2 >= 1.6.0" davs2.h davs2_decoder_open
